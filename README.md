@@ -33,7 +33,7 @@ cat bam_files|xargs -I file samtools index file
 ```
 ####pileup
 ```shell
-/home/deakig/projects/apple_rootstock/scripts/pileup2.sh /home/groups/harrisonlab/project_files/rootstock_genetics/ref/v1/Malus_x_domestica.v1.0-primary.pseudo.fa bam_files /home/deakig/projects/apple_rootstock/rna-seq/RNA_trans piledup.bcf regions
+~/projects/apple_rootstock/scripts/pileup2.sh ~/projects/apple_rootstock/rootstock_genetics/ref/v1/Malus_x_domestica.v1.0-primary.pseudo.fa bam_files ~/projects/apple_rootstock/rna-seq/RNA_trans piledup.bcf regions
 
 ls -v piledup.bcf.* > files
 bcftools concat -O v -f files >rna.pileup.vcf
