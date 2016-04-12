@@ -37,4 +37,36 @@ cat bam_files|xargs -I file samtools index file
 
 ls -v piledup.bcf.* > files
 bcftools concat -O v -f files >rna.pileup.vcf
+
+##extra step in here...
+bcftools view -h flt.all.vcf>all_new.vcf
+awk '{gsub("[^ACTGN,]","N",$4); gsub("[^ACTGN,]","N",$5)}1' OFS="\t" flt.all.vcf |grep ^chr >>all_new.vcf
+
+```
+
+####phasing with Beagle
+The parents of Gala are not necessary therefore a beagle ped file of:
+gala 1 0 0 
+is appropriate
+A gala vcf was produced seperatly and at a differnt time from the rootstocks.
+```shell
+awk '{gsub("[^ACTGN,]","N",$4); gsub("[^ACTGN,]","N",$5)}1' OFS="\t" ../gala_all_piledup.vcf |grep ^chr >>gala_new.vcf
+java -jar /home/deakig/projects/apple_rootstock/scripts/beagle.r1399.jar gtgl=gala_new.vcf usephase=true ped=../../beagle/gala.ped out=galabgl chrom=1 nthreads=8
+
+java -jar /home/deakig/projects/apple_rootstock/scripts/beagle.r1399.jar gtgl=../bcf/all_new.vcf ped=pedigree.ped out=newbgl nthreads=16
+
+```
+
+
+
+
+
+## Make diploid genomes with vcf2diploid (m116 and m27)
+```shell
+java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id m116 -chr ~/projects/apple_rootstock/rootstock_genetics/ref/v1/Malus_x_domestica.v1.0-primary.pseudo.fa -vcf newbgl.vcf -outDir ~/projects/apple_rootstock/allele/m116/newnew
+
+java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id m27 -chr ~/projects/apple_rootstock/rootstock_genetics/ref/v1/Malus_x_domestica.v1.0-primary.pseudo.fa -vcf newbgl.vcf -outDir ~/projects/apple_rootstock/allele/m27/newnew
+
+~/usr/bin/java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id gala -chr ~/Data/apple/Malus_x_domestica.v1.0-primary.pseudo.fa -vcf galabgl.vcf -outDir ~/projects/apple_rootstock/allele/gala
+
 ```
