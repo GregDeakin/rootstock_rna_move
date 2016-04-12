@@ -58,15 +58,12 @@ java -jar /home/deakig/projects/apple_rootstock/scripts/beagle.r1399.jar gtgl=..
 ```
 
 
-
-
-
 ## Make diploid genomes with vcf2diploid (m116 and m27)
 ```shell
 java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id m116 -chr ~/projects/apple_rootstock/rootstock_genetics/ref/v1/Malus_x_domestica.v1.0-primary.pseudo.fa -vcf newbgl.vcf -outDir ~/projects/apple_rootstock/allele/m116/newnew
 
 java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id m27 -chr ~/projects/apple_rootstock/rootstock_genetics/ref/v1/Malus_x_domestica.v1.0-primary.pseudo.fa -vcf newbgl.vcf -outDir ~/projects/apple_rootstock/allele/m27/newnew
 
-~/usr/bin/java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id gala -chr ~/Data/apple/Malus_x_domestica.v1.0-primary.pseudo.fa -vcf galabgl.vcf -outDir ~/projects/apple_rootstock/allele/gala
+java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id gala -chr ~/projects/apple_rootstock/rootstock_genetics/ref/v1/Malus_x_domestica.v1.0-primary.pseudo.fa -vcf galabgl.vcf -outDir ~/projects/apple_rootstock/allele/gala
 
 ```
