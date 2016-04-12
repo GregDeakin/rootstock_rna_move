@@ -87,4 +87,27 @@ repeat for pat and each rootstock - change the index to appropiate name
 
 awk -F"\t" '{split($6,a,"");asort(a);$6=a[1] a[2]}1' OFS="\t" < gala.snv >gala.snp
 ``` 
- 
+
+### Find "phased" snps
+```R
+library(sqldf)
+
+gala <- read.table("gala.snp",stringsAsFactors=FALSE
+m27 <- read.table("m27.snp",stringsAsFactors=FALSE)
+m116 <- read.table("m116.snp",stringsAsFactors=FALSE)
+
+tmp <- sqldf("select * from gala g inner join m27 m on g.V1=m.V1 and g.V2=m.V2 and g.V6!=m.V6")
+m27_phased <- tmp[,c[1,2,6,13])
+names(m27_phased) <- c("chr","pos","gala","m27")
+
+tmp <- sqldf("select * from gala g inner join m116 m on g.V1=m.V1 and g.V2=m.V2 and g.V6!=m.V6")
+m116_phased <- tmp[,c[1,2,6,13])
+names(m116_phased) <- c("chr","pos","gala","m116")
+
+write.table(m27_phased,"phased_m27.txt",sep="\t",quote=F)
+write.table(m116_phased,"phased_m116.txt",sep="\t",quote=F)
+```
+
+
+
+
