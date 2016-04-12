@@ -66,3 +66,22 @@ java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id m27 -chr ~/
 java -jar ~/projects/apple_rootstock/vcf2diploid/vcf2diploid.jar -id gala -chr ~/projects/apple_rootstock/rootstock_genetics/ref/v1/Malus_x_domestica.v1.0-primary.pseudo.fa -vcf galabgl.vcf -outDir ~/projects/apple_rootstock/allele/gala
 
 ```
+
+#### Indexing 
+
+Create mat and pat folders, link to chromosomes and build bowtie index
+```shell
+mkdir mat pat
+ln -s *maternal.fa mat/.
+ln -s *paternal.fa pat/.
+```
+Then
+
+```shell
+bowtie2-build chr10_m116_paternal.fa,chr13_m116_paternal.fa,chr16_m116_paternal.fa,chr2_m116_paternal.fa,chr5_m116_paternal.fa,chr8_m116_paternal.fa,chr11_m116_paternal.fa,chr14_m116_paternal.fa,chr17_m116_paternal.fa,chr3_m116_paternal.fa,chr6_m116_paternal.fa,chr9_m116_paternal.fa,chr12_m116_paternal.fa,chr15_m116_paternal.fa,chr1_m116_paternal.fa,chr4_m116_paternal.fa,chr7_m116_paternal.fa m116_paternal_index
+bowtie2-build chr10_m116_maternal.fa,chr11_m116_maternal.fa,chr12_m116_maternal.fa,chr13_m116_maternal.fa,chr14_m116_maternal.fa,chr15_m116_maternal.fa,chr16_m116_maternal.fa,chr17_m116_maternal.fa,chr1_m116_maternal.fa,chr2_m116_maternal.fa,chr3_m116_maternal.fa,chr4_m116_maternal.fa,chr5_m116_maternal.fa,chr6_m116_maternal.fa,chr7_m116_maternal.fa,chr8_m116_maternal.fa,chr9_m116_maternal.fa m116_maternal_index
+bowtie2-build chr10_m27_maternal.fa,chr13_m27_maternal.fa,chr16_m27_maternal.fa,chr2_m27_maternal.fa,chr5_m27_maternal.fa,chr8_m27_maternal.fa,chr11_m27_maternal.fa,chr14_m27_maternal.fa,chr17_m27_maternal.fa,chr3_m27_maternal.fa,chr6_m27_maternal.fa,chr9_m27_maternal.fa,chr12_m27_maternal.fa,chr15_m27_maternal.fa,chr1_m27_maternal.fa,chr4_m27_maternal.fa,chr7_m27_maternal.fa m27_maternal_index
+bowtie2-build chr10_m27_paternal.fa,chr13_m27_paternal.fa,chr16_m27_paternal.fa,chr2_m27_paternal.fa,chr5_m27_paternal.fa,chr8_m27_paternal.fa,chr11_m27_paternal.fa,chr14_m27_paternal.fa,chr17_m27_paternal.fa,chr3_m27_paternal.fa,chr6_m27_paternal.fa,chr9_m27_paternal.fa,chr12_m27_paternal.fa,chr15_m27_paternal.fa,chr1_m27_paternal.fa,chr4_m27_paternal.fa,chr7_m27_paternal.fa m27_paternal_index
+bowtie2-build chr10_gala_maternal.fa,chr13_gala_maternal.fa,chr16_gala_maternal.fa,chr2_gala_maternal.fa,chr5_gala_maternal.fa,chr8_gala_maternal.fa,chr11_gala_maternal.fa,chr14_gala_maternal.fa,chr17_gala_maternal.fa,chr3_gala_maternal.fa,chr6_gala_maternal.fa,chr9_gala_maternal.fa,chr12_gala_maternal.fa,chr15_gala_maternal.fa,chr1_gala_maternal.fa,chr4_gala_maternal.fa,chr7_gala_maternal.fa gala_maternal_index
+bowtie2-build chr10_gala_paternal.fa,chr13_gala_paternal.fa,chr16_gala_paternal.fa,chr2_gala_paternal.fa,chr5_gala_paternal.fa,chr8_gala_paternal.fa,chr11_gala_paternal.fa,chr14_gala_paternal.fa,chr17_gala_paternal.fa,chr3_gala_paternal.fa,chr6_gala_paternal.fa,chr9_gala_paternal.fa,chr12_gala_paternal.fa,chr15_gala_paternal.fa,chr1_gala_paternal.fa,chr4_gala_paternal.fa,chr7_gala_paternal.fa gala_paternal_index
+```
