@@ -51,9 +51,9 @@ is appropriate
 A gala vcf was produced seperatly and at a differnt time from the rootstocks.
 ```shell
 awk '{gsub("[^ACTGN,]","N",$4); gsub("[^ACTGN,]","N",$5)}1' OFS="\t" ../gala_all_piledup.vcf |grep ^chr >>gala_new.vcf
-java -jar /home/deakig/projects/apple_rootstock/scripts/beagle.r1399.jar gtgl=gala_new.vcf usephase=true ped=../../beagle/gala.ped out=galabgl chrom=1 nthreads=8
+java -jar ~/projects/apple_rootstock/scripts/beagle.r1399.jar gtgl=gala_new.vcf usephase=true ped=../../beagle/gala.ped out=galabgl chrom=1 nthreads=8
 
-java -jar /home/deakig/projects/apple_rootstock/scripts/beagle.r1399.jar gtgl=../bcf/all_new.vcf ped=pedigree.ped out=newbgl nthreads=16
+java -jar ~/projects/apple_rootstock/scripts/beagle.r1399.jar gtgl=../bcf/all_new.vcf ped=pedigree.ped out=newbgl nthreads=16
 
 ```
 
@@ -80,3 +80,11 @@ bowtie2-build $( echo $n ) gala_paternal_index
 ```
 
 repeat for pat and each rootstock - change the index to appropiate name
+
+#### find snps 
+```shell
+~/project/apple_rootstock//AlleleSeq_pipeline_v1.2/vcf2snp ../beagle/newbgl.vcf -c m27 >../allele/gala/gala.snv
+
+awk -F"\t" '{split($6,a,"");asort(a);$6=a[1] a[2]}1' OFS="\t" < gala.snv >gala.snp
+``` 
+ 
