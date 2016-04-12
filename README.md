@@ -89,10 +89,12 @@ awk -F"\t" '{split($6,a,"");asort(a);$6=a[1] a[2]}1' OFS="\t" < gala.snv >gala.s
 ``` 
 
 ### Find "phased" snps
+In R
+
 ```R
 library(sqldf)
 
-gala <- read.table("gala.snp",stringsAsFactors=FALSE
+gala <- read.table("gala.snp",stringsAsFactors=FALSE)
 m27 <- read.table("m27.snp",stringsAsFactors=FALSE)
 m116 <- read.table("m116.snp",stringsAsFactors=FALSE)
 
