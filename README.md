@@ -45,6 +45,8 @@ awk '{gsub("[^ACTGN,]","N",$4); gsub("[^ACTGN,]","N",$5)}1' OFS="\t" flt.all.vcf
 ```
 
 ###phasing with Beagle
+
+Update this - beagle doesn't phase these genomes correctly.
 The parents of Gala are not necessary therefore a beagle ped file of:
 gala 1 0 0 
 is appropriate
